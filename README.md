@@ -53,3 +53,5 @@ MeteoApp es una aplicación web sencilla que permite consultar el clima actual d
 ---
 
 ¡Disfruta consultando el clima con MeteoApp! 
+
+<img width="1920" height="927" alt="CapturePage(1)" src="https://github.com/user-attachments/assets/c558a4c3-3ea3-432a-9f01-75f45233faf2" />
