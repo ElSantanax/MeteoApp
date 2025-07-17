@@ -16,7 +16,6 @@ function buscarClima(e) {
         mostrarAlerta('Todos los campos son obligatorios.');
         return;
     }
-
     consultarApi(ciudad, pais)
 }
 
@@ -46,8 +45,36 @@ function consultarApi(ciudad, pais) {
     fetch(url)
         .then(respuesta => respuesta.json())
         .then(datos => {
+            limpiarHTML();
             if (datos.cod === '404') {
                 mostrarAlerta('Ciudad no encontrada');
+                return;
             }
+            mostraClima(datos);
         })
+}
+
+function mostraClima(datos) {
+    const { main: { temp, temp_max, tem_min } } = datos;
+    const centigrados = conversion(temp);
+
+    const actual = document.createElement('P');
+    actual.innerHTML = `${centigrados} &#8451;`;
+    actual.classList.add('font-bold', 'text-6xl');
+
+    const resultadoDiv = document.createElement('DIV');
+    resultadoDiv.classList.add('text-center', 'text-white');
+    resultadoDiv.appendChild(actual);
+
+    resultado.appendChild(resultadoDiv);
+}
+
+function conversion(grados) {
+    return parseInt(grados - 272.15)
+}
+
+function limpiarHTML() {
+    while (resultado.firstChild) {
+        resultado.removeChild(resultado.firstChild)
+    }
 }
